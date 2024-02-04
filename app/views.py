@@ -3,7 +3,9 @@ from rest_framework import status
 from rest_framework import viewsets
 from .models import *
 from .serializers import*
-# Create your views here.
+from rest_framework import generics
+from .models import Customer
+from .serializers import CustomerSerializer
 
 
 class GetMethod(viewsets.ModelViewSet):
@@ -49,3 +51,7 @@ class GetMethod(viewsets.ModelViewSet):
         else:
             status_code = status.HTTP_400_BAD_REQUEST
             return Response({"message": "Product data Not found", "status": status_code})
+
+class CustomerListCreateView(generics.ListCreateAPIView):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer

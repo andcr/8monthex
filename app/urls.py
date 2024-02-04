@@ -1,7 +1,6 @@
-from .views import *
-from django.urls import path, include
-from rest_framework.routers import DefaultRouter
+from django.urls import path
+from .views import CustomerListCreateView
 
-router = DefaultRouter()
-router.register('data', GetMethod, basename='data')
-urlpatterns = router.urls
+urlpatterns = [
+    path('customers/', CustomerListCreateView.as_view(), name='customer-list-create'),
+]
